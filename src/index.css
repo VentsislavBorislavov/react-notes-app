@@ -1,13 +1,190 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+:root {
+	--orange: #f7c36d;
+	--red: #f7966e;
+	--green: #dee78b;
+	--background: #ffffff;
+	--dark: #232323;
+	--appear-time: 150ms;
+	--main-s-elements-width: 96%;
+}
+* {
+	margin: 0px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+	background-color: var(--background);
+	font-family: 'Rubik', sans-serif;
+}
+
+nav {
+	position: fixed;
+	width: 100px;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--background);
+	border-right: 2px dotted lightgray;
+}
+
+nav h1 {
+	padding: 30px 0;
+}
+
+.container {
+	width: 100%;
+}
+
+/* ----- buttons ----- */
+
+.btn {
+	font-size: 1.8rem;
+	border: none;
+	display: flex;
+	place-content: center;
+	padding: 14.8px 16px;
+	cursor: pointer;
+}
+
+.btn-add {
+	color: var(--background);
+	background-color: var(--dark);
+	border-radius: 50%;
+	transition: transform ease-in-out 250ms;
+	margin-bottom: 34px;
+}
+
+.btn-add:hover {
+	transform: rotate(90deg);
+}
+
+/* options */
+
+.option {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	margin-bottom: 24px;
+	border: none;
+	cursor: pointer;
+	transform: translateY(-18px);
+	opacity: 0;
+}
+
+.option-red {
+	animation: appear var(--appear-time) ease-in 0s forwards;
+	background-color: var(--red);
+	transform: translateY(-52px);
+}
+.option-orange {
+	animation: appear var(--appear-time) ease-in 150ms forwards;
+	background-color: var(--orange);
+}
+.option-green {
+	animation: appear var(--appear-time) ease-in 300ms forwards;
+	background-color: var(--green);
+}
+
+.option-selected {
+	box-shadow: 0px 0px 0px 3px var(--dark);
+}
+
+.auth-button {
+	border: none;
+	padding: 5px 10px;
+	border-radius: 3px;
+	background-color: white;
+	cursor: pointer;
+	transition: color 100ms ease-in;
+	margin-top: auto;
+	margin-bottom: 60px;
+}
+
+.sign-in {
+	--green-here: #7c8150;
+	border: 1px solid var(--green-here);
+	color: var(--green-here);
+}
+
+.sign-in:hover,
+.sign-in:focus {
+	color: black;
+}
+
+.sign-out {
+	--red-here: #85543f;
+	border: 1px solid var(--red-here);
+	color: var(--red-here);
+}
+
+.sign-out:hover,
+.sign-out:focus {
+	color: black;
+}
+
+#main {
+	width: calc(100% - 105px);
+	margin-left: 105px;
+}
+
+#main .sign-in-alert {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#main .search-section {
+	width: var(--main-s-elements-width);
+	margin: 0 auto;
+	padding: 34px 0px;
+	border: none;
+}
+
+#main input {
+	border: none;
+	width: 300px;
+}
+
+#main input:focus {
+	outline: none;
+	border-bottom: 1px solid gray;
+}
+
+.notes {
+	max-width: var(--main-s-elements-width);
+	margin: 0 auto;
+	column-count: 6;
+}
+
+.note {
+	grid-gap: 30px;
+	padding: 30px;
+	border-radius: 15px;
+	break-inside: avoid-column;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.note-green {
+	background-color: var(--green);
+}
+.note-red {
+	background-color: var(--red);
+}
+.note-orange {
+	background-color: var(--orange);
+}
+
+.note .text {
+	padding-bottom: 26px;
+}
+
+@keyframes appear {
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
