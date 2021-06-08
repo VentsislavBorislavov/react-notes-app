@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NotesColors from './NotesColors';
 import { auth, firebase } from '../firebase/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import useButtonClass from '../hooks/useButtonClass';
 
 function Create() {
 	const [ selectColor, setSelectColor ] = useState(false);
@@ -18,10 +19,12 @@ function Create() {
 		auth.signInWithPopup(provider);
 	};
 
+	const btnClass = useButtonClass(selectColor);
+
 	return (
 		<nav>
 			<h1>Notes</h1>
-			<button class="btn btn-add" onClick={change}>
+			<button class={`btn btn-add ${btnClass}`} onClick={change}>
 				<FontAwesomeIcon icon={faPlus} />
 			</button>
 			{selectColor && <NotesColors />}
