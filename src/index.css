@@ -55,8 +55,8 @@ nav h1 {
 	margin-bottom: 34px;
 }
 
-.btn-add:hover {
-	transform: rotate(90deg);
+.clicked {
+	transform: rotate(135deg);
 }
 
 /* options */
@@ -126,6 +126,7 @@ nav h1 {
 #main {
 	width: calc(100% - 105px);
 	margin-left: 105px;
+	position: relative;
 }
 
 #main .sign-in-alert {
@@ -182,9 +183,45 @@ nav h1 {
 	padding-bottom: 26px;
 }
 
+.notes-loading {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.notes-loading .spinner {
+	animation: spin 1500ms linear 0s infinite;
+	font-size: 4rem;
+	color: var(--green);
+}
+
 @keyframes appear {
 	to {
 		transform: translateY(0);
 		opacity: 1;
+	}
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+
+	0% {
+		color: var(--green);
+	}
+	40% {
+		color: var(--orange);
+	}
+	80% {
+		color: var(--red);
 	}
 }
