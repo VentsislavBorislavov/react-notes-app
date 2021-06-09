@@ -7,6 +7,7 @@
 	--dark: #232323;
 	--appear-time: 150ms;
 	--main-s-elements-width: 96%;
+	--font: 'Rubik', sans-serif;
 }
 * {
 	margin: 0px;
@@ -14,7 +15,7 @@
 
 body {
 	background-color: var(--background);
-	font-family: 'Rubik', sans-serif;
+	font-family: var(--font);
 }
 
 nav {
@@ -74,16 +75,21 @@ nav h1 {
 
 .option-red {
 	animation: appear var(--appear-time) ease-in 0s forwards;
-	background-color: var(--red);
 	transform: translateY(-52px);
 }
 .option-orange {
 	animation: appear var(--appear-time) ease-in 150ms forwards;
-	background-color: var(--orange);
 }
 .option-green {
 	animation: appear var(--appear-time) ease-in 300ms forwards;
-	background-color: var(--green);
+}
+
+.option-blue {
+	animation: appear var(--appear-time) ease-in 450ms forwards;
+}
+
+.option-purple {
+	animation: appear var(--appear-time) ease-in 600ms forwards;
 }
 
 .option-selected {
@@ -169,18 +175,42 @@ nav h1 {
 	margin-bottom: 20px;
 }
 
-.note-green {
-	background-color: var(--green);
-}
-.note-red {
-	background-color: var(--red);
-}
-.note-orange {
-	background-color: var(--orange);
-}
-
 .note .text {
 	padding-bottom: 26px;
+}
+
+.new-note {
+	min-height: 80px;
+	position: relative;
+	transition: background-color 100ms linear;
+}
+
+.note-input {
+	resize: none;
+	background-color: transparent;
+	border: none;
+	overflow: auto;
+	font-family: var(--font);
+	margin-bottom: 25px;
+	width: 100%;
+}
+
+.note-input:focus {
+	outline: none;
+}
+
+.submit {
+	background-color: var(--dark);
+	position: absolute;
+	font-size: 1.1rem;
+	bottom: 20px;
+	right: 20px;
+	color: var(--background);
+	border: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 .notes-loading {
@@ -198,6 +228,30 @@ nav h1 {
 	animation: spin 1500ms linear 0s infinite;
 	font-size: 4rem;
 	color: var(--green);
+}
+
+/* Background Colors */
+
+.bg-green {
+	background-color: var(--green);
+}
+.bg-red {
+	background-color: var(--red);
+}
+.bg-orange {
+	background-color: var(--orange);
+}
+
+.bg-orange {
+	background-color: var(--orange);
+}
+
+.bg-blue {
+	background-color: #00d5ff;
+}
+
+.bg-purple {
+	background-color: #b593fb;
 }
 
 @keyframes appear {

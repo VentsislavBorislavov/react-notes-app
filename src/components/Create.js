@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IS_CREATEING_NOTE, SET_NOTE_COLOR } from '../redux/actions/types';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NotesColors from './NotesColors';
+import ColorButton from './ColorButton';
 import { auth, firebase } from '../firebase/config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import useButtonClass from '../hooks/useButtonClass';
 
 function Create() {
-	const [ selectColor, setSelectColor ] = useState(false);
 	const [ user ] = useAuthState(auth);
+	const dispatch = useDispatch();
+	const createNote = useSelector((state) => state.noteEditing.isCreating);
+	const selectedColor = useSelector((state) => state.noteEditing.color);
+	const handleClick = () => {
+		dispatch({ type: IS_CREATEING_NOTE });
+	};
 
-	const change = () => {
-		setSelectColor(!selectColor);
+	const setColor = (color) => {
+		dispatch({ type: SET_NOTE_COLOR, color: color });
 	};
 
 	const signInWithGoogle = () => {
@@ -19,15 +26,23 @@ function Create() {
 		auth.signInWithPopup(provider);
 	};
 
-	const btnClass = useButtonClass(selectColor);
+	const btnClass = useButtonClass(createNote);
 
 	return (
 		<nav>
 			<h1>Notes</h1>
-			<button class={`btn btn-add ${btnClass}`} onClick={change}>
+			<button className={`btn btn-add ${btnClass}`} onClick={handleClick}>
 				<FontAwesomeIcon icon={faPlus} />
 			</button>
-			{selectColor && <NotesColors />}
+			{createNote && (
+				<React.Fragment>
+					<ColorButton setColor={setColor} color={selectedColor} initialColor="red" />
+					<ColorButton setColor={setColor} color={selectedColor} initialColor="orange" />
+					<ColorButton setColor={setColor} color={selectedColor} initialColor="green" />
+					<ColorButton setColor={setColor} color={selectedColor} initialColor="blue" />
+					<ColorButton setColor={setColor} color={selectedColor} initialColor="purple" />
+				</React.Fragment>
+			)}
 			{user ? (
 				<button className="auth-button sign-out" onClick={() => auth.signOut()}>
 					Sign out
