@@ -201,7 +201,7 @@ nav h1 {
 .notes {
 	max-width: var(--main-s-elements-width);
 	margin: 0 auto;
-	columns: 6;
+	columns: 1;
 }
 
 .note {
@@ -308,6 +308,35 @@ nav h1 {
 	background-color: #b593fb;
 }
 
+@media (min-width: 800px) {
+	.notes {
+		columns: 2;
+	}
+}
+
+@media (min-width: 1100px) {
+	.notes {
+		columns: 3;
+	}
+}
+
+@media (min-width: 1400px) {
+	.notes {
+		columns: 4;
+	}
+}
+
+@media (min-width: 1700px) {
+	.notes {
+		columns: 5;
+	}
+}
+
+@media (min-width: 1900px) {
+	.notes {
+		columns: 6;
+	}
+}
 @keyframes appear {
 	to {
 		transform: translateY(0);

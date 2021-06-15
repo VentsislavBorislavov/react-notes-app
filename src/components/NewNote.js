@@ -16,7 +16,6 @@ function NewNote() {
 	const createNote = async (e) => {
 		e.preventDefault();
 		const date = new Date();
-
 		dispatch({ type: IS_CREATEING_NOTE });
 		await noteRef.add({
 			text,
