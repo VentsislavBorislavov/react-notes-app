@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { IS_CREATEING_NOTE } from '../redux/actions/types';
 import autosize from 'autosize';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,18 +10,19 @@ function NewNote() {
 	const [ text, setText ] = useState('');
 	const textRef = useRef(null);
 	const color = useSelector((state) => state.noteEditing.color);
-
-	const messageRef = firestore.collection('users').doc(auth.currentUser.uid).collection('notes');
+	const dispatch = useDispatch();
+	const noteRef = firestore.collection('users').doc(auth.currentUser.uid).collection('notes');
 
 	const createNote = async (e) => {
 		e.preventDefault();
+		const date = new Date();
 
-		await messageRef.add({
+		dispatch({ type: IS_CREATEING_NOTE });
+		await noteRef.add({
 			text,
-			date: timestamp(),
+			date,
 			color
 		});
-
 		setText('');
 	};
 

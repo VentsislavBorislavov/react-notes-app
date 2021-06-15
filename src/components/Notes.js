@@ -22,14 +22,10 @@ function Notes() {
 		);
 	}
 
-	const allnotes = notes.map((note) => (
-		<Note key={note.id} text={note.text} seconds={note.date.seconds} color={note.color} />
-	));
-
 	return (
 		<div className="notes">
 			{createNote && <NewNote />}
-			{allnotes}
+			{notes.map((note) => <Note key={note.id} note={note} />)}
 		</div>
 	);
 }
