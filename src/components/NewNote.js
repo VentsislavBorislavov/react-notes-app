@@ -4,7 +4,8 @@ import { IS_CREATEING_NOTE } from '../redux/actions/types';
 import autosize from 'autosize';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { auth, firestore, timestamp } from '../firebase/config';
+import { auth, firestore } from '../firebase/config';
+import { motion } from 'framer-motion';
 
 function NewNote() {
 	const [ text, setText ] = useState('');
@@ -12,6 +13,10 @@ function NewNote() {
 	const color = useSelector((state) => state.noteEditing.color);
 	const dispatch = useDispatch();
 	const noteRef = firestore.collection('users').doc(auth.currentUser.uid).collection('notes');
+
+	useEffect(() => {
+		autosize(textRef.current);
+	}, []);
 
 	const createNote = async (e) => {
 		e.preventDefault();
@@ -25,12 +30,8 @@ function NewNote() {
 		setText('');
 	};
 
-	useEffect(() => {
-		autosize(textRef.current);
-	}, []);
-
 	return (
-		<div className={`note new-note bg-${color}`}>
+		<motion.div layout className={`note new-note bg-${color}`}>
 			<form onSubmit={createNote}>
 				<textarea
 					className="note-input"
@@ -40,12 +41,12 @@ function NewNote() {
 					value={text}
 				/>
 				{text && (
-					<button className="submit" type="submit">
+					<button className="btn-create-note" type="submit">
 						<FontAwesomeIcon icon={faCheck} />
 					</button>
 				)}
 			</form>
-		</div>
+		</motion.div>
 	);
 }
 

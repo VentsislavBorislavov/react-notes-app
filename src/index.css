@@ -9,6 +9,7 @@
 	--main-s-elements-width: 96%;
 	--font: 'Rubik', sans-serif;
 }
+
 * {
 	margin: 0px;
 }
@@ -48,6 +49,8 @@ nav h1 {
 	cursor: pointer;
 }
 
+/* BIG BUTTON */
+
 .btn-add {
 	color: var(--background);
 	background-color: var(--dark);
@@ -55,6 +58,12 @@ nav h1 {
 	transition: transform ease-in-out 250ms;
 	margin-bottom: 34px;
 }
+
+.clicked {
+	transform: rotate(135deg);
+}
+
+/* buttons used to edit the notes */
 
 .btn-edit {
 	border: none;
@@ -94,8 +103,18 @@ nav h1 {
 	padding: 4px 4px;
 }
 
-.clicked {
-	transform: rotate(135deg);
+.btn-create-note {
+	background-color: var(--dark);
+	position: absolute;
+	font-size: 1.1rem;
+	bottom: 20px;
+	right: 20px;
+	color: var(--background);
+	border: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 /* options */
@@ -110,6 +129,8 @@ nav h1 {
 	transform: translateY(-18px);
 	opacity: 0;
 }
+
+/* the color option buttons that show when big create button is clicked */
 
 .option-red {
 	animation: appear var(--appear-time) ease-in 0s forwards;
@@ -133,6 +154,8 @@ nav h1 {
 .option-selected {
 	box-shadow: 0px 0px 0px 3px var(--dark);
 }
+
+/* sign in buttons */
 
 .auth-button {
 	border: none;
@@ -166,6 +189,8 @@ nav h1 {
 .sign-out:focus {
 	color: black;
 }
+
+/* ---- MAIN CONTENT ---- */
 
 #main {
 	width: calc(100% - 105px);
@@ -218,6 +243,10 @@ nav h1 {
 	padding-bottom: 26px;
 }
 
+.note:hover .btn-edit {
+	opacity: 1;
+}
+
 .note .edit-op-con {
 	display: flex;
 	position: absolute;
@@ -243,28 +272,11 @@ nav h1 {
 	overflow: auto;
 	margin-bottom: 25px;
 	width: 100%;
+	overflow: hidden;
 }
 
 .note-input:focus {
 	outline: none;
-}
-
-.note:hover .btn-edit {
-	opacity: 1;
-}
-
-.submit {
-	background-color: var(--dark);
-	position: absolute;
-	font-size: 1.1rem;
-	bottom: 20px;
-	right: 20px;
-	color: var(--background);
-	border: none;
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	cursor: pointer;
 }
 
 .notes-loading {
@@ -284,7 +296,7 @@ nav h1 {
 	color: var(--green);
 }
 
-/* Background Colors */
+/* ----- Background Colors -----*/
 
 .bg-green {
 	background-color: var(--green);
@@ -307,6 +319,8 @@ nav h1 {
 .bg-purple {
 	background-color: #b593fb;
 }
+
+/* ----- MEDIA ----- */
 
 @media (min-width: 800px) {
 	.notes {
@@ -337,6 +351,9 @@ nav h1 {
 		columns: 6;
 	}
 }
+
+/* ----- ANIMATIONS ----- */
+
 @keyframes appear {
 	to {
 		transform: translateY(0);

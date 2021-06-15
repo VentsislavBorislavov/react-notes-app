@@ -5,7 +5,7 @@ function App() {
 	return (
 		<div className="container">
 			<Create />
-			<MainSection isSignedIn={true} />
+			<MainSection />
 		</div>
 	);
 }

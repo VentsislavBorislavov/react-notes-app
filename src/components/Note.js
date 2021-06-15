@@ -3,12 +3,12 @@ import autosize from 'autosize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { auth, firestore } from '../firebase/config';
+import { motion } from 'framer-motion';
 
 const months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 
 function Note(props) {
 	const { color, text, date, id: noteId } = props.note;
-	console.log(noteId);
 	const noteDate = date.toDate();
 	const simpifiedDate = `${months[noteDate.getMonth()]} ${noteDate.getDate()} ${noteDate.getFullYear()}`;
 	const [ isEditing, setIsEditing ] = useState(false);
@@ -40,7 +40,7 @@ function Note(props) {
 	};
 
 	return (
-		<div className={`note bg-${color}`}>
+		<motion.div layout className={`note bg-${color}`}>
 			{isEditing ? (
 				<form onSubmit={editNote}>
 					<textarea
@@ -67,7 +67,7 @@ function Note(props) {
 					</button>
 				</React.Fragment>
 			)}
-		</div>
+		</motion.div>
 	);
 }
 

@@ -13,7 +13,7 @@ function Create() {
 	const dispatch = useDispatch();
 	const createNote = useSelector((state) => state.noteEditing.isCreating);
 	const selectedColor = useSelector((state) => state.noteEditing.color);
-	const handleClick = () => {
+	const setIsCreatingNote = () => {
 		dispatch({ type: IS_CREATEING_NOTE });
 	};
 
@@ -31,7 +31,7 @@ function Create() {
 	return (
 		<nav>
 			<h1>Notes</h1>
-			<button className={`btn btn-add ${btnClass}`} onClick={handleClick}>
+			<button className={`btn btn-add ${btnClass}`} onClick={setIsCreatingNote}>
 				<FontAwesomeIcon icon={faPlus} />
 			</button>
 			{createNote && (
