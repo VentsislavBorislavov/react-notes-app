@@ -7,10 +7,15 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewNote from './NewNote';
 
+const filterNotes = (notes, searchKey) => {
+	return notes.filter((note) => note.text.includes('' + searchKey)).map((note) => <Note key={note.id} note={note} />);
+};
+
 function Notes() {
 	const notesRef = firestore.collection('users').doc(auth.currentUser.uid).collection('notes'); // prolly have to put uid in brakests
 	const [ notes, loading ] = useCollectionData(notesRef, { idField: 'id' });
 	const createNote = useSelector((state) => state.noteEditing.isCreating);
+	const searchKey = useSelector((state) => state.search);
 
 	if (loading) {
 		return (
@@ -25,7 +30,7 @@ function Notes() {
 	return (
 		<div className="notes">
 			{createNote && <NewNote />}
-			{notes.map((note) => <Note key={note.id} note={note} />)}
+			{filterNotes(notes, searchKey)}
 		</div>
 	);
 }
