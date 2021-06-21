@@ -117,6 +117,16 @@ nav h1 {
 	cursor: pointer;
 }
 
+.btn-remove {
+	background-color: #940303;
+	padding: 5px 7px;
+	position: absolute;
+	bottom: 10px;
+	right: 50px;
+	opacity: 0;
+	transition: opacity 150ms ease-in;
+}
+
 /* options */
 
 .option {
@@ -241,6 +251,7 @@ nav h1 {
 
 .note .text {
 	padding-bottom: 26px;
+	word-wrap: break-word;
 }
 
 .note:hover .btn-edit {
@@ -318,6 +329,75 @@ nav h1 {
 
 .bg-purple {
 	background-color: #b593fb;
+}
+
+.delete-note-popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.message-cover {
+	background-color: white;
+	width: 30%;
+	min-height: 100px;
+	padding: 20px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.message-cover p {
+	align-self: center;
+}
+
+.message-cover .delete-buttons {
+	margin-top: 50px;
+	align-self: flex-end;
+}
+
+.delete-buttons button {
+	transition: all ease 400ms;
+	background: transparent;
+	font-weight: bolder;
+	position: relative;
+	padding: 6px 12px;
+	border-radius: 10px;
+	margin-right: 5px;
+}
+
+.delete-yes {
+	border: 3px solid var(--red);
+	color: var(--red);
+	cursor: pointer;
+	box-shadow: inset 0px 0px 0px var(--red);
+	z-index: 6;
+}
+
+.delete-yes:hover {
+	box-shadow: inset 100px 0px 0px var(--red);
+	color: white;
+	z-index: 6;
+}
+
+.delete-no {
+	border: 3px solid #a6ff00;
+	color: #a6ff00;
+	cursor: pointer;
+	box-shadow: inset 0px 0px 0px #a6ff00;
+	z-index: 6;
+}
+
+.delete-no:hover {
+	box-shadow: inset 100px 0px 0px #a6ff00;
+	color: white;
+	z-index: 6;
 }
 
 /* ----- MEDIA ----- */

@@ -14,8 +14,12 @@ const filterNotes = (notes, searchKey) => {
 };
 
 function Notes() {
-	const notesRef = firestore.collection('users').doc(auth.currentUser.uid).collection('notes'); // prolly have to put uid in brakests
-	const [ notes, loading ] = useCollectionData(notesRef, { idField: 'id' });
+	const notesQuery = firestore
+		.collection('users')
+		.doc(auth.currentUser.uid)
+		.collection('notes')
+		.orderBy('date', 'desc');
+	const [ notes, loading ] = useCollectionData(notesQuery, { idField: 'id' });
 	const createNote = useSelector((state) => state.noteEditing.isCreating);
 	const searchKey = useSelector((state) => state.search);
 

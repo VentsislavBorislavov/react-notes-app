@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import autosize from 'autosize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheck, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { auth, firestore } from '../firebase/config';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { deleteNoteAction } from '../redux/actions/notesActions';
+import { DELETE_NOTE } from '../redux/actions/types';
 
 const months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 
@@ -14,6 +17,7 @@ function Note(props) {
 	const [ isEditing, setIsEditing ] = useState(false);
 	const [ newText, setNewText ] = useState(text);
 	const textRef = useRef(null);
+	const dispatch = useDispatch();
 	const noteRef = firestore.collection('users').doc(auth.currentUser.uid).collection('notes').doc(noteId);
 
 	useEffect(
@@ -37,6 +41,11 @@ function Note(props) {
 	const discradChanges = () => {
 		setIsEditing(false);
 		setNewText(text);
+	};
+
+	const deleteNote = () => {
+		console.log(noteId);
+		dispatch({ type: DELETE_NOTE, noteId });
 	};
 
 	return (
@@ -64,6 +73,9 @@ function Note(props) {
 					<p className="date">{simpifiedDate}</p>
 					<button className="btn-edit edit" onClick={() => setIsEditing(true)}>
 						<FontAwesomeIcon icon={faEdit} />
+					</button>
+					<button className="btn-edit btn-remove" onClick={deleteNote}>
+						<FontAwesomeIcon icon={faTrash} />
 					</button>
 				</React.Fragment>
 			)}
