@@ -3,7 +3,7 @@
 ## About the app
 This is notes taking app using firebase as backend and react.js for the front end.  
 You must sign in with google accout to be able to use the app.  
-When logged in the users can create, delete or edit their notes. All the notes are stored in firestore and the users cannot read or write to other users' notes (hopefully).
+When logged in the users can create, delete or edit their notes. All the notes are stored in firestore and you must write rules so nobody will be able to see other people's information.
 
 ## How was it build
 The app uses:
