@@ -8,9 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewNote from './NewNote';
 
 const filterNotes = (notes, searchKey) => {
-	return notes
-		.filter((note) => note.text.toLowerCase().includes('' + searchKey.toLowerCase()))
-		.map((note) => <Note key={note.id} note={note} />);
+	return (
+		notes &&
+		notes
+			.filter((note) => note.text.toLowerCase().includes('' + searchKey.toLowerCase()))
+			.map((note) => <Note key={note.id} note={note} />)
+	);
 };
 
 function Notes() {

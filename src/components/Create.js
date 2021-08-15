@@ -23,7 +23,7 @@ function Create() {
 
 	const signInWithGoogle = () => {
 		const provider = new firebase.auth.GoogleAuthProvider();
-		auth.signInWithPopup(provider);
+		auth.signInWithRedirect(provider);
 	};
 
 	const btnClass = useButtonClass(createNote);
@@ -35,13 +35,13 @@ function Create() {
 				<FontAwesomeIcon icon={faPlus} />
 			</button>
 			{createNote && (
-				<React.Fragment>
+				<>
 					<ColorButton setColor={setColor} color={selectedColor} initialColor="red" />
 					<ColorButton setColor={setColor} color={selectedColor} initialColor="orange" />
 					<ColorButton setColor={setColor} color={selectedColor} initialColor="green" />
 					<ColorButton setColor={setColor} color={selectedColor} initialColor="blue" />
 					<ColorButton setColor={setColor} color={selectedColor} initialColor="purple" />
-				</React.Fragment>
+				</>
 			)}
 			{user ? (
 				<button className="auth-button sign-out" onClick={() => auth.signOut()}>
